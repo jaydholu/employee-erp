@@ -1,7 +1,8 @@
 import axios from 'axios'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 const api = axios.create({
-  baseURL: '//',   // Vite proxy rewrites /auth, /employees, /performance → backend
+  baseURL: API_BASE_URL,   // Vite proxy rewrites /auth, /employees, /performance → backend
   headers: { 'Content-Type': 'application/json' },
 })
 
