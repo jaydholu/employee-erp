@@ -6,7 +6,7 @@ from app.core.settings import settings
 
 
 fake = Faker()
-BASE_URL = settings.BASE_URL
+BASE_URL = "https://employee-erp-s56m.onrender.com"
 
 # ---- LOGIN ----
 login_data = {

@@ -41,7 +41,7 @@ export default function Login() {
             <span className="text-brand-300">workforce</span><br />
             with clarity.
           </h2>
-          <p className="text-brand-300 mt-4 text-sm leading-relaxed max-w-xs">
+          <p className="text-white mt-4 text-sm leading-relaxed max-w-xs">
             A unified platform for HR teams and employees to track performance, manage profiles, and grow together.
           </p>
         </div>
