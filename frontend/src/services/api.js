@@ -46,4 +46,4 @@ export const updateEmployee     = (id, data)   => api.put(`/employees/${id}`, da
 export const getPerformance     = (empId)      => api.get(`/performance/${empId}`)
 export const createPerformance  = (data)       => api.post('/performance/', data)
 
-export default api
+export default api;
