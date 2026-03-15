@@ -23,12 +23,12 @@ def list_employees(
 
 @router.post("/", response_model=EmployeeOut, status_code=201)
 def create_employee(
-    payload: EmployeeCreate,
+    employee: EmployeeCreate,
     db: Session = Depends(get_db),
-    _: User = Depends(require_admin),
+    current_user: User = Depends(require_admin)
 ):
     """Admin only: create a new employee + user account."""
-    return employee_service.create_employee(db, payload)
+    return employee_service.create_employee(db, employee)
 
 
 @router.get("/me", response_model=EmployeeOut)
