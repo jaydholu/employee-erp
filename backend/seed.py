@@ -22,6 +22,7 @@ def seed():
         existing = db.query(User).filter(User.username == "admin").first()
         if existing:
             print("Admin already exists - skipping seed.")
+            print(existing.username)
             db.close()
             return
 
@@ -37,7 +38,7 @@ def seed():
         db.commit()
         db.close()
 
-        print("Admin created successfully.")
+        print("Admin created successfully." + admin.username + "admin@hal")
     finally:
         db.close()
 
