@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Users, Building2, HandCoins, UserPlus, BriefcaseBusiness, CalendarDays } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import { getEmployees, getMyProfile } from '../services/api'
 
@@ -51,20 +52,20 @@ export default function Dashboard() {
 
         {/* Stat cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard title="Total Employees" value={employees.length} icon="👥" accent="brand" sub="Active headcount" />
-          <StatCard title="Departments"     value={departments}      icon="🏢" accent="emerald" sub="Across the org" />
+          <StatCard title="Total Employees" value={employees.length} icon={ Users } accent="brand" sub="Active headcount" />
+          <StatCard title="Departments"     value={departments}      icon={ Building2 } accent="amber" sub="Across the org" />
           <StatCard title="Avg Salary"      value={
             employees.length
               ? '₹' + Math.round(employees.reduce((s, e) => s + Number(e.salary), 0) / employees.length).toLocaleString('en-IN')
               : '—'
-          } icon="💰" accent="amber" sub="Per employee" />
+          } icon={ HandCoins } accent="emerald" sub="Per employee" />
           <StatCard title="New This Month"  value={
             employees.filter(e => {
               const d = new Date(e.joining_date)
               const now = new Date()
               return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()
             }).length
-          } icon="🆕" accent="rose" sub="Joined recently" />
+          } icon={ UserPlus } accent="rose" sub="Joined recently" />
         </div>
 
         {/* Recent employees */}
@@ -91,10 +92,10 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 font-mono">{emp.joining_date}</span>
+                  <span className="text-md text-slate-400 font-mono">{emp.joining_date}</span>
                   <button
                     onClick={() => navigate(`/employees/${emp.id}`)}
-                    className="text-xs text-brand-600 hover:text-brand-800 font-medium"
+                    className="text-lg text-brand-600 hover:text-brand-800 font-medium"
                   >
                     View
                   </button>
@@ -102,7 +103,7 @@ export default function Dashboard() {
               </div>
             ))}
             {employees.length === 0 && (
-              <p className="px-5 py-8 text-center text-sm text-slate-400">No employees yet. Create one!</p>
+              <p className="px-5 py-8 text-center text-md text-slate-400">No employees yet. Create one!</p>
             )}
           </div>
         </div>
@@ -120,9 +121,9 @@ export default function Dashboard() {
 
       {myProfile ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <StatCard title="Department" value={myProfile.department}  icon="🏢" accent="brand" />
-          <StatCard title="Position"   value={myProfile.position}    icon="💼" accent="emerald" />
-          <StatCard title="Since"      value={myProfile.joining_date} icon="📅" accent="amber" sub="Joining date" />
+          <StatCard title="Department" value={myProfile.department}  icon={ Building2 } accent="brand" />
+          <StatCard title="Position"   value={myProfile.position}    icon={ BriefcaseBusiness } accent="emerald" />
+          <StatCard title="Since"      value={myProfile.joining_date} icon={ CalendarDays } accent="amber" sub="Joining date" />
         </div>
       ) : (
         <p className="text-sm text-slate-400">No profile data available.</p>

@@ -15,8 +15,9 @@ env/
 .venv/
 *.log
 
-# Alembic
+# Alembic & Database
 alembic/versions/*.pyc
+.db
 
 # Node / Frontend
 node_modules/

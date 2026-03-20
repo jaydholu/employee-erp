@@ -3,7 +3,7 @@ Run once after migrations to create the default admin user.
 
     python seed.py
 
-Credentials for default admin: admin / admin@hal
+Credentials for default admin: admin / admin@company
 """
 
 
@@ -22,15 +22,14 @@ def seed():
         existing = db.query(User).filter(User.username == "admin").first()
         if existing:
             print("Admin already exists - skipping seed.")
-            print(existing.username)
             db.close()
             return
 
         admin = User(
-            fullname="Admin HAL",
+            fullname="Admin - Company",
             username="admin",
-            email="admin@hal.com",
-            password_hash=hash_password("admin@hal"),
+            email="admin@company.com",
+            password_hash=hash_password("admin@company"),
             role=RoleEnum.admin
         )
 
@@ -38,7 +37,7 @@ def seed():
         db.commit()
         db.close()
 
-        print("Admin created successfully." + admin.username + "admin@hal")
+        print("Admin created successfully.\nUsername: admin  |  Password: admin@company")
     finally:
         db.close()
 

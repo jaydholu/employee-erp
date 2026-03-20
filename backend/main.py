@@ -16,7 +16,7 @@ app = FastAPI(
 # ---------------------------------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://employee-erp-1kfy.onrender.com"],
+    allow_origins=["http://localhost:3000", "http://loaclhost:5371", "http://localhost:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

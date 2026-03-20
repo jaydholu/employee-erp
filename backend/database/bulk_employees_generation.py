@@ -2,16 +2,15 @@ import re
 import random
 import requests
 from faker import Faker
-from app.core.settings import settings
 
 
 fake = Faker()
-BASE_URL = "https://employee-erp-s56m.onrender.com"
+BASE_URL = "http://localhost:8000"
 
 # ---- LOGIN ----
 login_data = {
-    "username": settings.ADMIN_USERNAME,                            # your admin username
-    "password": settings.ADMIN_PASSWORD.get_secret_value()          # your admin password
+    "username": "admin",                            # your admin username
+    "password": "admin@company"                     # your admin password
 }
 
 print(login_data.get("username"), login_data.get("password"))
@@ -45,16 +44,16 @@ positions = [
 ]
 
 
-for i in range(500):
+for i in range(20):
     full_name = fake.name()
     username = re.sub(r'[^a-z]', '', full_name.lower()) + str(random.randint(100, 999))
     payload = {
         "user": {
             "fullname": full_name,
             "username": username,
-            "email": f"{username}@hal.com",
+            "email": f"{username}@company.com",
             "role": "employee",
-            "password": f"{username}@hal",
+            "password": f"{username}@company",
         },
         "employee": {
             "department": random.choice(departments),
