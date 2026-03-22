@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: 14px; /* up from browser default 16px – scales all rem units */
+  }
+
   body {
     @apply bg-surface-50 text-slate-800 font-sans antialiased;
   }

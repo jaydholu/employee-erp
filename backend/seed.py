@@ -26,7 +26,7 @@ def seed():
             return
 
         admin = User(
-            fullname="Admin - Company",
+            fullname="Admin",
             username="admin",
             email="admin@company.com",
             password_hash=hash_password("admin@company"),

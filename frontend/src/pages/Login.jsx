@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { Eye, EyeOff } from "lucide-react"
 
 export default function Login() {
   const { login } = useAuth()
@@ -9,6 +10,7 @@ export default function Login() {
   const [form, setForm]     = useState({ username: '', password: '' })
   const [error, setError]   = useState('')
   const [loading, setLoading] = useState(false)
+  const [showPwd, setShowPwd] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,7 +34,7 @@ export default function Login() {
           <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center text-white font-bold text-sm">
             ERP
           </div>
-          <span className="text-white font-semibold text-lg tracking-wide">Employee Portal | HAL</span>
+          <span className="text-white font-semibold text-lg tracking-wide">Employee Portal | Company</span>
         </div>
 
         <div>
@@ -87,16 +89,22 @@ export default function Login() {
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-slate-600 mb-1.5">Password</label>
+            <div className="relative">
               <input
-                type="password"
-                required
-                value={form.password}
-                onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
-                placeholder="••••••••"
-                className="w-full px-4 py-2.5 border border-surface-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+                  type={showPwd ? 'text' : 'password'}
+                  required
+                  value={form.password}
+                  onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-2.5 pr-11 border border-surface-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
               />
+              <button
+                  type="button"
+                  onClick={() => setShowPwd(v => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              >
+                {showPwd ? <EyeOff /> : <Eye />}
+              </button>
             </div>
 
             <button

@@ -4,8 +4,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"DM Sans"', 'sans-serif'],
-        mono: ['"DM Mono"', 'monospace'],
+        sans: ["DM Sans", 'sans-serif'],
+        mono: ["DM Mono", 'monospace'],
+      },
+      fontSize: {
+        xs:    ['0.8rem',  { lineHeight: '1.2rem'  }],
+        sm:    ['0.95rem', { lineHeight: '1.45rem' }],
+        base:  ['1.05rem', { lineHeight: '1.65rem' }],
+        lg:    ['1.2rem',  { lineHeight: '1.8rem'  }],
+        xl:    ['1.35rem', { lineHeight: '1.95rem' }],
+        '2xl': ['1.6rem',  { lineHeight: '2.1rem'  }],
+        '3xl': ['2rem',    { lineHeight: '2.4rem'  }],
+        '4xl': ['2.5rem',  { lineHeight: '1.1'     }],
       },
       colors: {
         brand: {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import EmployeeTable from '../components/EmployeeTable'
 import { getEmployees, createEmployee, updateEmployee } from '../services/api'
+import { Eye, EyeOff } from "lucide-react"
 
 const EMPTY_CREATE = {
   user: { fullname: '', username: '', email: '', password: '', role: 'employee' },
@@ -10,14 +11,15 @@ const EMPTY_CREATE = {
 const EMPTY_EDIT = { fullname: '', email: '', department: '', position: '', joining_date: '', salary: '' }
 
 export default function Employees() {
-  const [employees, setEmployees] = useState([])
-  const [loading, setLoading]     = useState(true)
+  const [employees, setEmployees]   = useState([])
+  const [loading, setLoading]       = useState(true)
   const [showCreate, setShowCreate] = useState(false)
   const [editTarget, setEditTarget] = useState(null)   // employee object
   const [createForm, setCreateForm] = useState(EMPTY_CREATE)
   const [editForm, setEditForm]     = useState(EMPTY_EDIT)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError]           = useState('')
+  const [showCreatePwd, setShowCreatePwd] = useState(false)
 
   const load = () => {
     setLoading(true)
@@ -51,6 +53,8 @@ export default function Employees() {
     setEditForm({
       fullname:     emp.user.fullname,
       email:        emp.user.email,
+      username:     emp.user.username,
+      password:     emp.user.password,
       department:   emp.department,
       position:     emp.position,
       joining_date: emp.joining_date,
@@ -116,9 +120,23 @@ export default function Employees() {
                   className={inputCls} placeholder="jane@company.com" />
               </FormRow>
               <FormRow label="Password">
-                <input type="password" required value={createForm.user.password}
-                  onChange={e => setCreateForm(f => ({ ...f, user: { ...f.user, password: e.target.value }}))}
-                  className={inputCls} placeholder="••••••••" />
+                <div className="relative">
+                  <input
+                      type={showCreatePwd ? 'text' : 'password'}
+                      required
+                      value={createForm.user.password}
+                      onChange={e => setCreateForm(f => ({ ...f, user: { ...f.user, password: e.target.value }}))}
+                      className={inputCls + ' pr-11'}
+                      placeholder="••••••••"
+                  />
+                  <button
+                      type="button"
+                      onClick={() => setShowCreatePwd(v => !v)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  >
+                    {showCreatePwd ? <EyeOff /> : <Eye />}
+                  </button>
+                </div>
               </FormRow>
             </fieldset>
 

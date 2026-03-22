@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Users, Building2, HandCoins, UserPlus, BriefcaseBusiness, CalendarDays } from 'lucide-react'
+import { Users, Building2, Banknote, UserPlus, BriefcaseBusiness, CalendarDays } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import { getEmployees, getMyProfile } from '../services/api'
 
@@ -46,35 +46,35 @@ export default function Dashboard() {
     return (
       <div className="space-y-6">
         <div>
-          <h2 className="text-lg font-bold text-slate-800">Welcome back, {user.fullname} 👋</h2>
+          <h2 className="text-lg font-bold text-slate-800">Welcome back, {user.fullname}!</h2>
           <p className="text-sm text-slate-400 mt-0.5">Here's a quick overview of your workforce.</p>
         </div>
 
         {/* Stat cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard title="Total Employees" value={employees.length} icon={ Users } accent="brand" sub="Active headcount" />
-          <StatCard title="Departments"     value={departments}      icon={ Building2 } accent="amber" sub="Across the org" />
+          <StatCard title="Departments"     value={departments}      icon={ Building2 } accent="rose" sub="Across the organization" />
           <StatCard title="Avg Salary"      value={
             employees.length
               ? '₹' + Math.round(employees.reduce((s, e) => s + Number(e.salary), 0) / employees.length).toLocaleString('en-IN')
               : '—'
-          } icon={ HandCoins } accent="emerald" sub="Per employee" />
+          } icon={ Banknote } accent="emerald" sub="Per employee" />
           <StatCard title="New This Month"  value={
             employees.filter(e => {
               const d = new Date(e.joining_date)
               const now = new Date()
               return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()
             }).length
-          } icon={ UserPlus } accent="rose" sub="Joined recently" />
+          } icon={ UserPlus } accent="amber" sub="Joined recently" />
         </div>
 
         {/* Recent employees */}
         <div className="bg-white rounded-xl border border-surface-200 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-surface-100 flex items-center justify-between">
-            <h3 className="font-semibold text-slate-800 text-sm">Recent Employees</h3>
+            <h3 className="text-brand-600 hover:text-brand-700 font-medium text-lg">Recent Employees</h3>
             <button
               onClick={() => navigate('/employees')}
-              className="text-xs text-brand-600 hover:text-brand-700 font-medium"
+              className="text-sm text-brand-600 hover:text-brand-700 font-medium"
             >
               View all →
             </button>
@@ -92,7 +92,7 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-md text-slate-400 font-mono">{emp.joining_date}</span>
+                  <span className="text-sm text-slate-400 font-mono">{emp.joining_date}</span>
                   <button
                     onClick={() => navigate(`/employees/${emp.id}`)}
                     className="text-lg text-brand-600 hover:text-brand-800 font-medium"
@@ -103,7 +103,7 @@ export default function Dashboard() {
               </div>
             ))}
             {employees.length === 0 && (
-              <p className="px-5 py-8 text-center text-md text-slate-400">No employees yet. Create one!</p>
+              <p className="px-5 py-8 text-center text-sm text-slate-400">No employees yet. Create one!</p>
             )}
           </div>
         </div>

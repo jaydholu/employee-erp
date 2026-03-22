@@ -44,7 +44,7 @@ positions = [
 ]
 
 
-for i in range(20):
+for i in range(500):
     full_name = fake.name()
     username = re.sub(r'[^a-z]', '', full_name.lower()) + str(random.randint(100, 999))
     payload = {
@@ -69,4 +69,13 @@ for i in range(20):
         headers=headers
     )
 
-    print(f"{i+1}/500 -> {r.status_code}")
+    print(f"Name: {payload.get('user').get('fullname')}\n"
+          f"Username: {payload.get('user').get('username')}\n"
+          f"Email: {payload.get('user').get('email')}\n"
+          f"Role: {payload.get('user').get('role')}\n"
+          f"Department: {payload.get('employee').get('department')}\n"
+          f"Position: {payload.get('employee').get('position')}\n"
+          f"Joining_date: {payload.get('employee').get('joining_date')}\n"
+          f"Salary: {payload.get('employee').get('salary')}")
+
+    print(f"{i+1}/500 -> {r.status_code}\n")

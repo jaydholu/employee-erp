@@ -5,10 +5,16 @@ export default function StatCard({ title, value, sub, icon: Icon, accent = 'bran
     amber:   'bg-amber-100 text-amber-600',
     rose:    'bg-rose-100 text-rose-600',
   }
+  const borders = {
+    brand:   'border-brand-500',
+    emerald: 'border-emerald-500',
+    amber:   'border-amber-500',
+    rose:    'border-rose-500',
+  }
   return (
-    <div className="bg-white rounded-xl border border-surface-200 shadow-sm p-5 flex items-start gap-4">
-      <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-lg shrink-0 ${accents[accent]}`}>
-        <Icon />
+    <div className={`bg-white rounded-xl border border-surface-200 shadow-sm p-5 flex items-start gap-4`}>
+      <div className={`w-14 h-14 rounded-lg flex items-center justify-center text-lg shrink-0 ${accents[accent]} ${borders[accent]}`}>
+        <Icon className="w-18 h-18"/>
       </div>
       <div>
         <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">{title}</p>
